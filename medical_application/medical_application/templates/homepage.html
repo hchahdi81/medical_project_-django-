@@ -1,0 +1,268 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+
+    <!-- Inline CSS Styles -->
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5dc;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+       
+        /* Navbar Styles */
+        header {
+            background: transparent;
+            padding: 10px 40px; 
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0;
+        }
+
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px; /* Reduce spacing between items */
+        }
+
+        nav ul li:last-child {
+            margin-right: 0; /* No margin on the last item */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .portal-btn {
+            background-color: #333;
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .portal-btn:hover {
+            background-color: #000;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: black;
+            padding: 100px 0;
+        }
+
+        .hero-text {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-text .btn {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        .hero-text .btn:hover {
+            background-color: #555;
+        }
+
+        /* About, Services, Career, FAQ Sections */
+        section.about, section.services, section.career, section.faq {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        section.about h2, section.services h2, section.career h2, section.faq h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        section.about p, section.services p, section.career p, section.faq p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        section.about {
+            background-color: #f5f5dc;
+        }
+
+        section.services {
+            background-color: #fffbe0;
+        }
+
+        section.career {
+            background-color: #f5f5dc;
+        }
+
+        section.faq {
+            background-color: #fffbe0;
+        }
+
+        /* Remove bullet points for all unordered lists */
+        ul {
+            list-style-type: none; /* Removes bullet points */
+            padding-left: 0; /* Optional: Remove default padding */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        footer h3 {
+            font-size: 1.2rem;
+        }
+
+        footer p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#career">Career</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="{% url 'login' %}" class="portal-btn">PATIENT PORTAL</a></li>
+                    <li><a href="#">Français</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-image">
+                <img src="{% static 'images/clinic.jpg' %}" alt="Clinic Image">
+            </div>
+            <section class="hero">
+                <div class="hero-text">
+                    <h1>Welcome to Our Medical Application</h1>
+                    <p>Manage medical records with ease.</p>
+                    <a href="{% url 'login' %}" class="btn">Login</a>
+                    <a href="{% url 'register_doctor' %}" class="btn">Register</a>
+                </div>
+            </section>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About Our Application</h2>
+            <p>A centralized system for healthcare providers to access and manage patient records in real-time, improving diagnosis and care coordination.</p>
+        </section>
+
+        <section id="services" class="services">
+            <h2>Our Services</h2>
+            <p>We streamline healthcare management for both patients and providers:</p>
+            <ul>
+                <li>Centralized access to medical records via healthcare cards.</li>
+                <li>Real-time access to patient history, prescriptions, and diagnostics.</li>
+                <li>AI-powered tools for symptom checking.</li>
+                <li>Facial and voice authentication for secure login.</li>
+            </ul>
+        </section>
+
+        <section id="career" class="career">
+            <h2>Career Opportunities</h2>
+            <p>Join our team and help shape the future of healthcare with cutting-edge technology.</p>
+            <ul>
+                <li>Collaborate with experts in AI, healthcare, and data security.</li>
+                <li>Be part of a global platform improving patient outcomes.</li>
+            </ul>
+        </section>
+
+        <section id="faq" class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <p>Common questions about our platform:</p>
+            <ul>
+                <li><strong>Is my data secure?</strong> Yes, we use top-tier encryption.</li>
+                <li><strong>Can I update my records?</strong> Only personal details, not medical history.</li>
+                <li><strong>How do I access my records?</strong> Via healthcare card, facial, or voice authentication.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <h3>Contact Us</h3>
+        <p>Email: info@medicalapp.com</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Business Hours: Monday - Friday: 8am - 5pm</p>
+        <p>Saturday: 9am - 1pm</p>
+    </footer>
+
+    <!-- Smooth scroll for anchor links -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
