@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    h5 {
+        color: #ff0000;
+        font-weight: bold;
+        text-align: center;
+    }
+    p {
+        font-size: 18px;
+        text-align: center;
+    }
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Centre verticalement */
+        margin-top: 20px;
+    }
+    button {
+        background-color: #ff5555;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #ff0000;
+    }
+    /* Style for the Annuler button */
+    .cancel-btn {
+        background-color: #5555ff; /* Blue background */
+        color: white; /* White text color */
+        padding: 10px 20px; /* Padding */
+        font-size: 16px; /* Font size */
+        text-decoration: none; /* Remove underline */
+        border-radius: 4px; /* Rounded corners */
+        transition: background-color 0.3s; /* Transition effect */
+    }
+    .cancel-btn:hover {
+        background-color: #0000ff; /* Darker blue on hover */
+    }
+</style>
+
+<h5>Confirmer la suppression</h5>
+<p>Êtes-vous sûr de vouloir supprimer le dossier médical de {{ record.patient.nom }} {{ record.patient.prenom }} ?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Oui, supprimer</button>
+    <a href="{% url 'doctor_medical_record_list' %}?email={{ doctor_email }}" class="cancel-btn">Annuler</a>
+</form>
+{% endblock %}

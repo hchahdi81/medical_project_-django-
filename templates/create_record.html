@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Container adjustments */
+    .container {
+        margin-top: 50px;
+    }
+
+    /* Form adjustments */
+    .medical-record-form {
+        background-color: #f5f5dc; /* Same background color as in login form */
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+    }
+
+    /* Form input fields styling */
+    .medical-record-form input, 
+    .medical-record-form select, 
+    .medical-record-form textarea {
+        background-color: #faf8dc; /* Similar input background color */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /* Button styling */
+    .medical-record-form button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* Button hover effect */
+    .medical-record-form button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Form heading adjustments */
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container">
+    <h2>Créer un dossier médical</h2>
+    <form method="post" enctype="multipart/form-data" class="medical-record-form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+</div>
+
+{% endblock %}

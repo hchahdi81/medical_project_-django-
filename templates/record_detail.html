@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Container adjustments */
+    .container {
+        margin-top: 50px;
+    }
+
+    /* Form adjustments */
+    .medical-record-form {
+        background-color: #f5f5dc; /* Same background color as in login form */
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+    }
+
+    /* Form input fields styling */
+    .medical-record-form input, 
+    .medical-record-form select, 
+    .medical-record-form textarea {
+        background-color: #faf8dc; /* Similar input background color */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /* Common button styling */
+    .common-button {
+        color: white;
+        border: none;
+        padding: 12px 24px; /* Increased padding for larger button */
+        width: auto; /* Changed to auto to fit content */
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s; /* Transition for hover effect */
+        font-size: 18px; /* Larger font size */
+        text-align: center; /* Center the text */
+        display: inline-block; /* Make the button inline */
+        margin-left: 15px; /* Space between buttons */
+    }
+
+    /* Button styling for "Mettre à jour" */
+    .update-button {
+        background-color: #28a745; /* Green color for update button */
+    }
+
+    .update-button:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+
+    /* Back button styling */
+    .back-button {
+        background-color: #007bff; /* Blue button color */
+    }
+
+    .back-button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    /* Form heading adjustments */
+    h5 {
+        color: #ff5555; /* Same color as the button */
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px; /* Space below the heading */
+    }
+
+    /* Button container for alignment */
+    .button-container {
+        display: flex; /* Use flexbox for alignment */
+        justify-content: center; /* Center the buttons */
+        margin-top: 10px; /* Space above the button container */
+    }
+</style>
+
+<div class="container">
+    <h5>Détails du dossier médical</h5>
+    <form method="post" enctype="multipart/form-data" class="medical-record-form">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.name != 'patient_password' and field.name != 'patient_image' %}
+                <div class="form-group">
+                    {{ field.label_tag }} {{ field }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        <div class="button-container">
+            <button type="submit" class="common-button update-button">Mettre à jour</button>
+            <a href="{% url 'doctor_medical_record_list' %}?email={{ doctor_email }}" class="common-button back-button">Retour à la liste</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
